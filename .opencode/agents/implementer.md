@@ -47,11 +47,19 @@ stok/
 - Existen los 3 archivos en `specs/<name>/`: `requirements.md`,
   `design.md`, `tasks.md`. Si falta alguno, paras.
 
+## Skills obligatorias
+
+Antes de escribir código, carga estas skills para seguir best practices de React Native:
+
+- **react-native-best-practices**: Optimización de FPS, TTI, bundle size, memory leaks, re-renders, animaciones.
+- **vercel-react-native-skills**: Best practices de React Native y Expo para apps performantes.
+
 ## Protocolo
 
-1. **Lee** `AGENTS.md`, `docs/architecture.md`, `docs/conventions.md`,
+1. **Carga las skills** `react-native-best-practices` y `vercel-react-native-skills`.
+2. **Lee** `AGENTS.md`, `docs/architecture.md`, `docs/conventions.md`,
    `docs/specs.md`, `docs/verification.md`.
-2. **Lee el spec completo** en `specs/<name>/`. Cada `T<n>` de `tasks.md`
+3. **Lee el spec completo** en `specs/<name>/`. Cada `T<n>` de `tasks.md`
    es lo que vas a hacer; cada `R<n>` de `requirements.md` es lo que debe
    quedar verdadero al final.
 3. **Anota** en `progress/current.md`:
@@ -62,10 +70,12 @@ stok/
    b. Si la task incluye un test, escríbelo en `__tests__/`.
    c. Marca `[x] T<n>` en `tasks.md`.
 5. **Verifica** ejecutando los comandos de `docs/verification.md`:
+
    ```bash
    pnpx tsc --noEmit       # debe compilar sin errores de tipos
    pnpx jest               # todos los tests deben pasar
    ```
+
    Si falla → vuelve al paso 4.
 6. **Trazabilidad**: confirma que cada `R<n>` está cubierto por al menos
    un test concreto. Anótalo en `progress/impl_<name>.md`
