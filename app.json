@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.elgabrielcisneros.stok"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +20,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.elgabrielcisneros.stok"
     },
     "web": {
       "output": "static",
@@ -28,6 +30,42 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/Inter_18pt-Regular.ttf"],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "Inter",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/Inter_18pt-Bold.ttf",
+                    "weight": "700"
+                  },
+                  {
+                    "path": "./assets/fonts/Inter_18pt-Italic.ttf",
+                    "weight": "400",
+                    "style": "italic"
+                  },
+                  {
+                    "path": "./assets/fonts/Inter_18pt-Light.ttf",
+                    "weight": "200"
+                  },
+                  {
+                    "path": "./assets/fonts/Inter_18pt-Medium.ttf",
+                    "weight": "500"
+                  },
+                  {
+                    "path": "./assets/fonts/Inter_18pt-SemiBold.ttf",
+                    "weight": "600"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
       [
         "expo-splash-screen",
         {
