@@ -25,7 +25,7 @@ Las features que añaden pantallas o componentes se verifican compilando
 y ejecutando la app:
 
 ```bash
-npx expo start
+pnpx expo start
 # Escanear QR con Expo Go o compilar en emulador
 ```
 
@@ -41,7 +41,7 @@ Verificar que las operaciones CRUD funcionan correctamente:
 
 ```bash
 # Abrir consola de Expo
-npx expo start
+pnpx expo start
 # En la consola, ejecutar pruebas manuales de queries
 ```
 
@@ -76,9 +76,9 @@ El implementer documenta el mapa en `progress/impl_<name>.md`:
 ## Verificación final antes de cerrar
 
 ```bash
-npx expo lint          # debe terminar sin errores
-npx tsc --noEmit       # debe compilar sin errores de tipos
-npx jest               # todos los tests deben pasar
+pnpx expo lint          # debe terminar sin errores
+pnpx tsc --noEmit       # debe compilar sin errores de tipos
+pnpx jest               # todos los tests deben pasar
 ```
 
 Si alguno de estos comandos falla, **no** marques nada como `done`. Anota
@@ -86,9 +86,9 @@ el bloqueo en `progress/current.md` con estado `blocked` en `feature_list.json`.
 
 ## Checklist de cierre
 
-- [ ] `npx expo lint` pasa sin errores
-- [ ] `npx tsc --noEmit` compila sin errores
-- [ ] `npx jest` todos los tests pasan
+- [ ] `pnpx expo lint` pasa sin errores
+- [ ] `pnpx tsc --noEmit` compila sin errores
+- [ ] `pnpx jest` todos los tests pasan
 - [ ] La app carga en emulador/dispositivo sin crashes
 - [ ] El flujo principal de la feature funciona end-to-end
 - [ ] Los datos persisten correctamente en SQLite

@@ -35,9 +35,9 @@ usuario  ─→  app/(tabs)/  (Expo Router)
               │
               ├─→  components/  (UI: botones, grids)
               │        │
-              │        └─→  hooks/  (useInventario, etc.)
+              │        └─→  hooks/  (useInventory, etc.)
               │                 │
-              │                 └─→  database/queries.js  (CRUD SQLite)
+              │                 └─→  database/queries.ts  (CRUD SQLite)
               │                          │
               │                          └─→  SQLite (local)
               │
@@ -54,24 +54,24 @@ stok/
 │   ├── _layout.tsx         # Layout raíz (init DB, providers)
 │   ├── (tabs)/             # Navegación principal
 │   │   ├── index.tsx       # Dashboard
-│   │   ├── registrar.tsx   # Formulario de registro
-│   │   └── nube.tsx        # Sync / respaldos
+│   │   ├── register.tsx    # Formulario de registro
+│   │   └── cloud.tsx       # Sync / respaldos
 │   └── modal.tsx           # Modales
 ├── components/             # UI reutilizable
 │   └── ui/                 # Componentes atómicos
 ├── constants/              # Fuentes de verdad estáticas
-│   └── categorias.js       # Estructura jerárquica de ropa
+│   └── categories.ts       # Estructura jerárquica de ropa
 ├── database/               # Capa de persistencia
-│   ├── db.js               # Conexión con expo-sqlite
-│   ├── schema.js           # Creación de tablas
-│   └── queries.js          # Funciones CRUD
+│   ├── db.ts               # Conexión con expo-sqlite
+│   ├── schema.ts           # Creación de tablas
+│   └── queries.ts          # Funciones CRUD
 ├── hooks/                  # Hooks personalizados
-│   └── useInventario.js    # Conecta UI con SQLite
-├── store/                  # Estado全局 (Zustand)
-│   └── useStore.js         # Estado efímero, triggers, badges
+│   └── useInventory.ts     # Conecta UI con SQLite
+├── store/                  # Estado (Zustand)
+│   └── useStore.ts         # Estado efímero, triggers, badges
 ├── utils/                  # Lógica pura sin UI
-│   ├── generateUUID.js     # Generación de IDs
-│   └── exportBackup.js     # Empaquetado JSON para respaldos
+│   ├── generateUUID.ts     # Generación de IDs
+│   └── exportBackup.ts     # Empaquetado JSON para respaldos
 ├── docs/                   # Documentación del proyecto
 └── specs/                  # Specs de features (SDD)
 ```
@@ -85,7 +85,7 @@ stok/
 - No hacer fetch a APIs externas sin verificar conectividad primero.
   Offline-first significa que la app funciona sin red.
 - No usar `<TextInput>` para categorías. Obligar al uso de botones
-  basados en `constants/categorias.js`.
+  basados en `constants/categories.ts`.
 - No almacenar estado persistente en Zustand. Solo estado efímero
   y triggers de refresco.
 - No escribir sin `INSERT OR REPLACE INTO` validando `updated_at`
@@ -93,21 +93,21 @@ stok/
 
 ## Manejo de errores en UI
 
-```javascript
+```typescript
 // En hooks/ o database/
-export async function registrarEntrada(datos) {
+export async function registerEntry(data: InventoryRecord): Promise<{ success: boolean; error?: string }> {
   try {
-    await insertarRegistro(datos);
+    await insertRecord(data);
     return { success: true };
   } catch (error) {
-    console.error('Error al registrar:', error);
+    console.error('Error registering:', error);
     return { success: false, error: error.message };
   }
 }
 
 // En componentes/
-const resultado = await registrarEntrada(datos);
-if (!resultado.success) {
-  Alert.alert('Error', resultado.error);
+const result = await registerEntry(data);
+if (!result.success) {
+  Alert.alert('Error', result.error);
 }
 ```
