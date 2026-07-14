@@ -5,8 +5,7 @@
 
 ## Estilo JavaScript/TypeScript
 
-- **Lenguaje:** JavaScript (ES6+) y JSX. TypeScript opcional pero
-  recomendado para tipos complejos.
+- **Lenguaje:** TypeScript (ES6+) y TSX.
 - **Formato:** ESLint con config Expo. 2 espacios de indentación.
 - **Imports:** ordenados — librerías externas primero, luego alias `@/`,
   luego rutas relativas.
@@ -19,23 +18,33 @@
 | Tipo                    | Convención        | Ejemplo                        |
 |-------------------------|-------------------|--------------------------------|
 | Archivos componentes    | `kebab-case`      | `haptic-tab.tsx`               |
-| Archivos utilidades     | `kebab-case`      | `generate-uuid.js`             |
+| Archivos utilidades     | `kebab-case`      | `generate-uuid.ts`             |
 | Componentes React       | `PascalCase`      | `HapticTab`                    |
-| Funciones / variables   | `camelCase`       | `registrarEntrada`             |
-| Constantes              | `UPPER_SNAKE`     | `DEFAULT_CATEGORIA`            |
-| Hooks                   | prefijo `use`     | `useInventario`                |
+| Funciones / variables   | `camelCase`       | `registerEntry`               |
+| Constantes              | `UPPER_SNAKE`     | `DEFAULT_CATEGORY`            |
+| Hooks                   | prefijo `use`     | `useInventory`                |
 | CSS-in-JS / StyleSheet  | `PascalCase`      | `styles.container`             |
+
+## Idioma
+
+Código, nombres de variables, funciones, interfaces, hooks, componentes y
+ficheros estarán en **inglés**. Los comentarios y documentación pueden
+estar en español cuando se dirijan a humanos.
 
 ## Estructura de archivo — Componentes
 
-```jsx
+```tsx
 import { View, Text } from 'react-native';
-import { styles } from './mi-componente.styles';
+import { styles } from './my-component.styles';
 
-export function MiComponente({ titulo }) {
+interface MyComponentProps {
+  title: string;
+}
+
+export function MyComponent({ title }: MyComponentProps) {
   return (
     <View style={styles.container}>
-      <Text>{titulo}</Text>
+      <Text>{title}</Text>
     </View>
   );
 }
@@ -43,15 +52,14 @@ export function MiComponente({ titulo }) {
 
 ## Estructura de archivo — Utilidades / Database
 
-```javascript
+```typescript
 import * as SQLite from 'expo-sqlite';
 import { generateUUID } from '@/utils/generate-uuid';
 
-/**
- * Inserta un registro en la tabla inventario.
- * @returns {Promise<{success: boolean, error?: string}>}
- */
-export async function insertarRegistro(db, datos) {
+export async function insertRecord(
+  db: SQLite.SQLiteDatabase,
+  data: InventoryRecord
+): Promise<{ success: boolean; error?: string }> {
   // ...
 }
 ```
@@ -61,28 +69,28 @@ export async function insertarRegistro(db, datos) {
 | Carpeta          | Propósito                                   | Ejemplo de uso            |
 |------------------|---------------------------------------------|---------------------------|
 | `app/`           | Rutas Expo Router                           | `(tabs)/index.tsx`        |
-| `components/`    | UI reutilizable                             | `ui/boton-categoria.tsx`  |
-| `constants/`     | Datos estáticos / diccionarios              | `categorias.js`           |
-| `database/`      | SQLite: conexión, schema, queries           | `queries.js`              |
-| `hooks/`         | Custom hooks                                | `useInventario.js`        |
-| `store/`         | Zustand (estado efímero)                    | `useStore.js`             |
-| `utils/`         | Funciones puras sin dependencia de React    | `generate-uuid.js`        |
+| `components/`    | UI reutilizable                             | `ui/category-button.tsx`   |
+| `constants/`     | Datos estáticos / diccionarios              | `categories.ts`            |
+| `database/`      | SQLite: conexión, schema, queries           | `queries.ts`              |
+| `hooks/`         | Custom hooks                                | `useInventory.ts`         |
+| `store/`         | Zustand (estado efímero)                    | `useStore.ts`             |
+| `utils/`         | Funciones puras sin dependencia de React    | `generate-uuid.ts`        |
 | `docs/`          | Documentación del proyecto                  | `architecture.md`         |
 | `specs/`         | Specs de features (SDD)                     | `001-entrada/`            |
 
 ## Tests
 
 - Los tests van en una carpeta `__tests__/` o `tests/` en la raíz.
-- Un archivo de test por módulo: `__tests__/queries.test.js`.
+- Un archivo de test por módulo: `__tests__/queries.test.ts`.
 - Cada test debe poder ejecutarse de forma aislada con una DB temporal.
-- Nombres de test descriptivos: `test_insertar_registro_devuelve_uuid`.
+- Nombres de test descriptivos: `test_insert_record_returns_uuid`.
 
 ## Manejo de errores
 
-```javascript
+```typescript
 // En database/ — errores de dominio
 class DatabaseError extends Error {
-  constructor(message, code) {
+  constructor(message: string, code: string) {
     super(message);
     this.code = code;
     this.name = 'DatabaseError';

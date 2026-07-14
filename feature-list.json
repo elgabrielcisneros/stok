@@ -1,0 +1,21 @@
+{
+  "project": "notes-cli",
+  "description": "App mobile \"offline-first\". Diseñada para gestionar y registrar el inventario de ropa donada en un centro de acopio tras desastres naturales. Permite registrar entradas y salidas de prendas categorizadas (género, tipo, talla) de forma ultrarrápida mediante una interfaz de botones (sin uso de teclado). Funciona completamente sin internet usando una base de datos local y permite sincronización en la nube o respaldos manuales compartidos.",
+  "rules": {
+    "one_feature_at_a_time": true,
+    "require_tests_to_close": true,
+    "require_approved_spec_to_implement": true,
+    "valid_status": ["pending", "spec_ready", "in_progress", "done", "blocked"],
+    "sdd_required_when": "feature has \"sdd\": true"
+  },
+  "features": [
+    {
+      "id": 1,
+      "name": "",
+      "title": "",
+      "description": "",
+      "acceptance": [""],
+      "status": "pending"
+    }
+  ]
+}
