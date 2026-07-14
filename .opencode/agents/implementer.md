@@ -49,10 +49,10 @@ stok/
 
 ## Skills obligatorias
 
-Antes de escribir código, carga estas skills para seguir best practices de React Native:
+Antes de escribir código, carga estas skills para seguir las mejores practicas de React Native/Expo:
 
 - **react-native-best-practices**: Optimización de FPS, TTI, bundle size, memory leaks, re-renders, animaciones.
-- **vercel-react-native-skills**: Best practices de React Native y Expo para apps performantes.
+- **vercel-react-native-skills**: Mejores practicas de React Native y Expo para apps performantes.
 
 ## Protocolo
 
@@ -62,14 +62,14 @@ Antes de escribir código, carga estas skills para seguir best practices de Reac
 3. **Lee el spec completo** en `specs/<name>/`. Cada `T<n>` de `tasks.md`
    es lo que vas a hacer; cada `R<n>` de `requirements.md` es lo que debe
    quedar verdadero al final.
-3. **Anota** en `progress/current.md`:
+4. **Anota** en `progress/current.md`:
    - `Feature en curso: <id> — <name>`
    - `Plan: las tasks T1..Tn de specs/<name>/tasks.md`
-4. **Para cada task `T<n>` en orden**:
+5. **Para cada task `T<n>` en orden**:
    a. Implementa el cambio que indica la task (TypeScript/TSX).
    b. Si la task incluye un test, escríbelo en `__tests__/`.
    c. Marca `[x] T<n>` en `tasks.md`.
-5. **Verifica** ejecutando los comandos de `docs/verification.md`:
+6. **Verifica** ejecutando los comandos de `docs/verification.md`:
 
    ```bash
    pnpx tsc --noEmit       # debe compilar sin errores de tipos
@@ -77,11 +77,11 @@ Antes de escribir código, carga estas skills para seguir best practices de Reac
    ```
 
    Si falla → vuelve al paso 4.
-6. **Trazabilidad**: confirma que cada `R<n>` está cubierto por al menos
+7. **Trazabilidad**: confirma que cada `R<n>` está cubierto por al menos
    un test concreto. Anótalo en `progress/impl_<name>.md`
    (mapa `R<n> → test`).
-7. **No marques `done` tú mismo.** Espera al reviewer.
-8. Si el reviewer aprueba (te lo dirá el leader en una segunda invocación):
+8. **No marques `done` tú mismo.** Espera al reviewer.
+9. Si el reviewer aprueba (te lo dirá el leader en una segunda invocación):
    cambias estado a `done` y mueves el resumen a `progress/history.md`.
 
 ## Reglas duras
